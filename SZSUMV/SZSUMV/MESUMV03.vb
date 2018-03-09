@@ -1,6 +1,6 @@
 ﻿'Imports Oracle.ManagedDataAccess.Client
-'Imports System.IO
-'Imports WindowsApplication1
+Imports System.IO
+
 
 
 Public Class MESUMV03
@@ -9,7 +9,7 @@ Public Class MESUMV03
     Public Const p_wo_dept As String = "PL"
     Private Shared ReadOnly Gv_VERSION As String = "0001"
 
-    Private Gv_dtPlant As DataTable = New DataTable
+    Public Gv_dtPlant As DataTable = New DataTable
     Private Gv_dtBuilding As DataTable = New DataTable
     Private Gv_dtDutykind As DataTable = New DataTable
     Private Gv_dtEmp As DataTable = New DataTable
@@ -53,6 +53,7 @@ Public Class MESUMV03
             " and type='SAHO_BUDLING' and close_flag='N' order by code"
         'dt_rows = 0
         'dt_rows = Pvt_GetSQLDATA(Gv_dtBuilding, qs_building, p_org_id)
+
         GetSQLData_WEB(Gv_dtBuilding, qs_building, p_org_id)
         If Gv_dtBuilding.Rows.Count > 0 Then
             cbBuilding.DataSource = Gv_dtBuilding
@@ -69,6 +70,7 @@ Public Class MESUMV03
             cbDutykind.DisplayMember = "name"
             cbDutykind.ValueMember = "duty_kind"
         End If
+
         Me.Text = GetSYSTEMTITLE() + " 程式版本Ver-[" + Gv_VERSION + "] IP-" + GetIPaddress()
         'Me.WindowState = FormWindowState.Maximized
     End Sub
@@ -296,6 +298,7 @@ Public Class MESUMV03
             " and a.org_id=wj.org_id(+) and a.wo_number = wj.wo_number(+) and a.wo_number is not null order by 1"
         'Dim dt_rows As Integer = 0
         'dt_rows = Pvt_GetSQLDATA(Gv_dtWO, qs_wo, p_org_id)
+
         GetSQLData_WEB(Gv_dtWO, qs_wo, p_org_id)
 
         If Gv_dtWO.Rows.Count > 0 Then
